@@ -37,15 +37,24 @@
         <activity android:name=".presentacion.AcercaDeActivity"
             android:label="Acerca de ..."
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
-        <activity android:name=".presentacion.VistaLugarActivity"
-            android:label="Vista del lugar"/>
-        <activity android:name=".presentacion.EdicionLugarActivity"
-            android:label="Edicion Lugar"/>
+        <activity
+            android:name=".presentacion.VistaLugarActivity"
+            android:label="Vista del lugar"
+            android:theme="@style/Theme.MisLugares"/>
+        <activity
+            android:name=".presentacion.EdicionLugarActivity"
+            android:label="Edicion Lugar"
+            android:theme="@style/Theme.MisLugares"/>
         <activity android:name=".presentacion.PreferenciasActivity"
-            android:label="Preferencias"/>
-        <activity android:name=".presentacion.MapaActivity"/>
-        <activity android:name=".presentacion.RutaActivity"
-            android:label="Ruta al lugar"/>
+            android:label="Preferencias"
+            android:theme="@style/Theme.MisLugares"/>
+        <activity
+            android:name=".presentacion.MapaActivity"
+            android:theme="@style/Theme.MisLugares"/>
+        <activity
+            android:name=".presentacion.RutaActivity"
+            android:label="Ruta al lugar"
+            android:theme="@style/Theme.MisLugares"/>
         <provider
             android:authorities="com.example.misLugares.fileProvider"
             android:name="androidx.core.content.FileProvider"

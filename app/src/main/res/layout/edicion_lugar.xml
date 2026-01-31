@@ -1,286 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:contentDescription="@null">
+    android:background="#F5F5F5"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginBottom="24dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
+        <!-- NOMBRE DEL LUGAR -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="95dp"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:background="@color/white">
+                android:padding="16dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="Nombre del lugar"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     android:textColor="@color/purple_700"
-                    android:layout_marginBottom="8dp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/nombre"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Ingresa el nombre"
-                        android:inputType="text"
-                        android:text="algo que identifique el lugar"
-                        android:textSize="16sp"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/nombre"
+                    android:layout_width="321dp"
+                    android:layout_height="38dp"
+                    android:background="@android:drawable/edit_text"
+                    android:hint="Ingresa el nombre del lugar"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#9E9E9E"
+                    android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- TIPO DE LUGAR -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:background="@color/white">
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tipo de lugar"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:textColor="@color/purple_700"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="8dp" />
 
                 <Spinner
                     android:id="@+id/tipo"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:padding="12dp" />
+                    android:layout_height="50dp"
+                    android:background="@android:drawable/edit_text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:spinnerMode="dropdown" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- DIRECCIÓN -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:background="@color/white">
+                android:padding="16dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dirección"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:textColor="@color/purple_700"
                     android:layout_marginBottom="8dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/direccion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:startIconDrawable="@android:drawable/ic_menu_myplaces">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/direccion"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Dirección del lugar"
-                        android:inputType="text|textPostalAddress"
-                        android:text="dirección del lugar"
-                        android:textSize="16sp"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="50dp"
+                    android:hint="Dirección del lugar"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:textColorHint="#9E9E9E"
+                    android:background="@android:drawable/edit_text"
+                    android:padding="12dp"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- TELÉFONO -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:background="@color/white">
+                android:padding="16dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Teléfono"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:textColor="@color/purple_700"
                     android:layout_marginBottom="8dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/telefono"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:startIconDrawable="@android:drawable/ic_menu_call">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/telefono"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Número de contacto"
-                        android:inputType="phone"
-                        android:text="teléfono para contactar"
-                        android:textSize="16sp"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="50dp"
+                    android:hint="Número de contacto"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:textColorHint="#9E9E9E"
+                    android:background="@android:drawable/edit_text"
+                    android:padding="12dp"
+                    android:inputType="phone"
+                    android:maxLines="1" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- SITIO WEB -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:background="@color/white">
+                android:padding="16dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sitio Web"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:textColor="@color/purple_700"
                     android:layout_marginBottom="8dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/url"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:startIconDrawable="@android:drawable/ic_menu_mapmode">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/url"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="URL del sitio web"
-                        android:inputType="text"
-                        android:text="página web"
-                        android:textSize="16sp"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="50dp"
+                    android:hint="URL del sitio web"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:textColorHint="#9E9E9E"
+                    android:background="@android:drawable/edit_text"
+                    android:padding="12dp"
+                    android:inputType="textUri"
+                    android:maxLines="1" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- COMENTARIOS -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:background="@color/white">
+                android:padding="16dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Comentarios"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:textColor="@color/purple_700"
                     android:layout_marginBottom="8dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/comentario"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/comentario"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minLines="3"
-                        android:gravity="top"
-                        android:hint="Tus notas sobre este lugar"
-                        android:inputType="textMultiLine"
-                        android:text="introduce tus notas"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:background="@color/white" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="150dp"
+                    android:hint="Escribe tus notas sobre este lugar"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:textColorHint="#9E9E9E"
+                    android:background="@android:drawable/edit_text"
+                    android:padding="12dp"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:scrollbars="vertical"
+                    android:maxLines="10"
+                    android:minLines="5" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
