@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-
+import com.example.misLugares.casos_uso.RutasHelper;
 import com.example.misLugares.AdaptadorLugares;
 import com.example.misLugares.Aplicacion;
 import com.example.misLugares.CasosUsoLocalizacion;

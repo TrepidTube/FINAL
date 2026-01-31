@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="Aplicacion"
         android:allowBackup="true"
@@ -36,6 +37,8 @@
         <activity android:name=".presentacion.PreferenciasActivity"
             android:label="Preferencias"/>
         <activity android:name=".presentacion.MapaActivity"/>
+        <activity android:name=".presentacion.RutaActivity"
+            android:label="Ruta al lugar"/>
         <provider
             android:authorities="com.example.misLugares.fileProvider"
             android:name="androidx.core.content.FileProvider"

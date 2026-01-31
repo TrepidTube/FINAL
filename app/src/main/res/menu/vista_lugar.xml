@@ -14,6 +14,12 @@
         android:orderInCategory="20"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/accion_trazar_ruta"
+        android:title="Trazar ruta"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:orderInCategory="25"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/accion_editar"
         android:title="editar"
         android:icon="@android:drawable/ic_menu_edit"

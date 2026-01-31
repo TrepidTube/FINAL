@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.misLugares.casos_uso.RutasHelper;
+import com.google.android.gms.maps.model.LatLng;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,6 +26,7 @@ import com.example.misLugares.LugaresBDAdapter;
 import com.example.misLugares.R;
 import com.example.misLugares.casos_uso.CasosUsoLugar;
 import com.example.misLugares.datos.RepositorioLugares;
+import com.example.misLugares.modelo.GeoPunto;
 import com.example.misLugares.modelo.Lugar;
 
 import java.text.DateFormat;
@@ -41,6 +44,7 @@ public class VistaLugarActivity extends AppCompatActivity {
     private Uri uriUltimaFoto;
     final static int RESULTADO_EDITAR = 1;
     private int id = -1;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_lugar);
@@ -53,6 +57,7 @@ public class VistaLugarActivity extends AppCompatActivity {
         foto = findViewById(R.id.foto);
         actualizaVistas();
     }
+
     public void actualizaVistas() {
         TextView nombre = findViewById(R.id.nombre);
         nombre.setText(lugar.getNombre());
@@ -109,10 +114,12 @@ public class VistaLugarActivity extends AppCompatActivity {
         });
         usoLugar.visualizarFoto(lugar, foto);
     }
+
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.vista_lugar, menu);
         return true;
     }
+
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -121,6 +128,14 @@ public class VistaLugarActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.accion_llegar) {
             usoLugar.verMapa(lugar);
+            return true;
+        } else if (id == R.id.accion_trazar_ruta) {
+            // Trazar ruta simple
+            trazarRutaSimple();
+            return true;
+        } else if (id == R.id.accion_trazar_ruta) {
+            // Nueva funcionalidad: Trazar ruta
+            trazarRuta();
             return true;
         } else if (id == R.id.accion_editar) {
             usoLugar.editar(pos, RESULTADO_EDITAR);
@@ -143,20 +158,61 @@ public class VistaLugarActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método para trazar la ruta hacia el lugar
+     */
+    private void trazarRuta() {
+        GeoPunto posicionActual = ((Aplicacion) getApplication()).posicionActual;
+
+        // Validar que tengamos ubicación actual
+        if (posicionActual == null || posicionActual.equals(GeoPunto.SIN_POSICION)) {
+            Toast.makeText(this, "No se pudo obtener tu ubicación actual. " +
+                    "Asegúrate de tener activado el GPS.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Validar que el lugar tenga coordenadas
+        if (lugar.getPosicion() == null || lugar.getPosicion().equals(GeoPunto.SIN_POSICION)) {
+            Toast.makeText(this, "Este lugar no tiene coordenadas válidas",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Lanzar la actividad de ruta
+        Intent intent = new Intent(this, RutaActivity.class);
+        intent.putExtra("pos", pos);
+        startActivity(intent);
+    }
+    // Trazar ruta simple usando MapaActivity existente
+    private void trazarRutaSimple() {
+        GeoPunto posicionActual = ((Aplicacion) getApplication()).posicionActual;
+
+        if (posicionActual == null || posicionActual.equals(GeoPunto.SIN_POSICION)) {
+            Toast.makeText(this, "No se pudo obtener tu ubicación actual",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (lugar.getPosicion() == null || lugar.getPosicion().equals(GeoPunto.SIN_POSICION)) {
+            Toast.makeText(this, "Este lugar no tiene coordenadas válidas",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Abrir MapaActivity con parámetro extra para dibujar ruta
+        Intent intent = new Intent(this, MapaActivity.class);
+        intent.putExtra("trazar_ruta", true);
+        intent.putExtra("pos_destino", pos);
+        startActivity(intent);
+    }
+
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULTADO_EDITAR) {
             lugar = lugares.elemento(id);
             pos = lugares.getAdaptador().posicionId(id);
             actualizaVistas();
-        } /*else if (requestCode == RESULTADO_GALERIA) {
-            if (resultCode == Activity.RESULT_OK) {
-                usoLugar.ponerFoto(pos, data.getDataString(), foto);
-            } else {
-                Toast.makeText(this, "Foto no cargada",Toast.LENGTH_LONG).show();
-            }
-        }*/
-        else if (requestCode == RESULTADO_GALERIA) {
+        } else if (requestCode == RESULTADO_GALERIA) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 Uri uri = data.getData();
                 if (uri != null) {
@@ -191,6 +247,7 @@ public class VistaLugarActivity extends AppCompatActivity {
     public void verMapa(View view) {
         usoLugar.verMapa(lugar);
     }
+
     private static final int SOLICITUD_PERMISO_CALL_PHONE = 0;
     public void llamarTelefono(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
@@ -200,15 +257,19 @@ public class VistaLugarActivity extends AppCompatActivity {
                     "no puedo realizar llamadas", SOLICITUD_PERMISO_CALL_PHONE, this);
         }
     }
+
     public void verPgWeb(View view) {
         usoLugar.verPgWeb(lugar);
     }
+
     public void ponerDeGaleria(View view) {
         usoLugar.ponerDeGaleria(RESULTADO_GALERIA);
     }
+
     public void tomarFoto(View view) {
         uriUltimaFoto = usoLugar.tomarFoto(RESULTADO_FOTO);
     }
+
     public void eliminarFoto(View view) {
         new AlertDialog.Builder(this)
                 .setTitle("Borrado de foto")
@@ -222,19 +283,21 @@ public class VistaLugarActivity extends AppCompatActivity {
                 })
                 .show();
     }
+
     public static void solicitarPermiso(final String permiso, String justificacion, final int requestCode, final Activity actividad) {
         if (ActivityCompat.shouldShowRequestPermissionRationale(actividad, permiso)) {
             new AlertDialog.Builder(actividad).setTitle("Solicitud de permiso").setMessage(justificacion)
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode);
-                }
-            }).show();
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode);
+                        }
+                    }).show();
         } else {
             ActivityCompat.requestPermissions(actividad, new String[]{permiso}, requestCode);
         }
     }
+
     @Override public void onRequestPermissionsResult(int requestCode, String[] permissions, int [] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == SOLICITUD_PERMISO_CALL_PHONE) {
