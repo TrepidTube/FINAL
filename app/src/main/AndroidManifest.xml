@@ -13,48 +13,51 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_mi_icono"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MisLugares">
+        android:theme="@style/Theme.MisLugares.Fullscreen">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>
-        <!-- LoginActivity como actividad principal (LAUNCHER) -->
+
         <activity
             android:name=".presentacion.LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MisLugares.NoActionBar">
+            android:theme="@style/Theme.MisLugares.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- MainActivity ahora es una actividad secundaria -->
+        <activity
+            android:name=".presentacion.MenuPrincipalActivity"
+            android:exported="false"
+            android:label="Menú Principal"
+            android:theme="@style/Theme.MisLugares.Fullscreen"/>
         <activity
             android:name=".presentacion.MainActivity"
             android:exported="false"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/Theme.MisLugares.NoActionBar"/>
+            android:label="Mis Lugares Guardados"
+            android:theme="@style/Theme.MisLugares.Fullscreen"/>
         <activity android:name=".presentacion.AcercaDeActivity"
             android:label="Acerca de ..."
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
             android:name=".presentacion.VistaLugarActivity"
             android:label="Vista del lugar"
-            android:theme="@style/Theme.MisLugares"/>
+            android:theme="@style/Theme.MisLugares.Fullscreen"/>
         <activity
             android:name=".presentacion.EdicionLugarActivity"
             android:label="Edicion Lugar"
-            android:theme="@style/Theme.MisLugares"/>
+            android:theme="@style/Theme.MisLugares.Fullscreen"/>
         <activity android:name=".presentacion.PreferenciasActivity"
             android:label="Preferencias"
-            android:theme="@style/Theme.MisLugares"/>
+            android:theme="@style/Theme.MisLugares.Fullscreen"/>
         <activity
             android:name=".presentacion.MapaActivity"
-            android:theme="@style/Theme.MisLugares"/>
+            android:theme="@style/Theme.MisLugares.Fullscreen"/>
         <activity
             android:name=".presentacion.RutaActivity"
             android:label="Ruta al lugar"
-            android:theme="@style/Theme.MisLugares"/>
+            android:theme="@style/Theme.MisLugares.Fullscreen"/>
         <provider
             android:authorities="com.example.misLugares.fileProvider"
             android:name="androidx.core.content.FileProvider"

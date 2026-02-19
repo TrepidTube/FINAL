@@ -25,8 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
 
-    // ⚠️ IMPORTANTE: Reemplaza este client ID con el correcto de tu google-services.json
-    // Búscalo en el objeto "oauth_client" donde "client_type": 3
     private static final String WEB_CLIENT_ID = "165553765880-qli6evqbigiookjc2dal04v65dr084es.apps.googleusercontent.com";
 
     @Override
@@ -34,10 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Inicializar Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        // Configurar Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(WEB_CLIENT_ID)
                 .requestEmail()
@@ -55,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             Log.d(TAG, "Usuario ya autenticado: " + currentUser.getEmail());
-            irAPantallaPrincipal();
+            irAMenuPrincipal(); // ← Redirige al menú principal
         }
     }
 
@@ -96,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (user != null) {
                             Toast.makeText(this, "Bienvenido " + user.getDisplayName(),
                                     Toast.LENGTH_SHORT).show();
-                            irAPantallaPrincipal();
+                            irAMenuPrincipal(); // ← Redirige al menú principal
                         }
                     } else {
                         Log.e(TAG, "signInWithCredential:failure", task.getException());
@@ -109,8 +105,9 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void irAPantallaPrincipal() {
-        Intent intent = new Intent(this, MainActivity.class);
+    // ← Cambiado: ahora va al MenuPrincipalActivity en lugar de MainActivity
+    private void irAMenuPrincipal() {
+        Intent intent = new Intent(this, MenuPrincipalActivity.class);
         startActivity(intent);
         finish();
     }
